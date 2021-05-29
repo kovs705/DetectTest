@@ -6,75 +6,87 @@
 //
 
 import SwiftUI
-import CoreData
+import Vision
+import UIKit
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
+    
+    var viewController: ViewController?
+    var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    var imageView: UIImageView!
+    
+    // MARK: Body
+    
     var body: some View {
-        List {
-            ForEach(items) { item in
-                Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-            }
-            .onDelete(perform: deleteItems)
-        }
-        .toolbar {
-            #if os(iOS)
-            EditButton()
-            #endif
-
-            Button(action: addItem) {
-                Label("Add Item", systemImage: "plus")
-            }
+        Button(action: {
+            // function to open a picker:
+            viewController?.promptPhoto()
+            
+        }) {
+            Image(systemName: "rectangle.stack")
+                .font(.system(size: 25))
         }
     }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+    
+    
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView()
         }
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
+    // MARK: image picker
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    // picker for photo
+    @objc
+    func promptPhoto() {
+        
+        let prompt = UIAlertController(title: "Choose a Photo",
+                                       message: "Please choose a photo.",
+                                       preferredStyle: .actionSheet)
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
+        func presentCamera(_ _: UIAlertAction) {
+            imagePicker.sourceType = .camera
+            self.present(imagePicker, animated: true)
+        }
+        
+        let cameraAction = UIAlertAction(title: "Camera",
+                                         style: .default,
+                                         handler: presentCamera)
+        
+        func presentLibrary(_ _: UIAlertAction) {
+            imagePicker.sourceType = .photoLibrary
+            self.present(imagePicker, animated: true)
+        }
+        
+        let libraryAction = UIAlertAction(title: "Photo Library",
+                                          style: .default,
+                                          handler: presentLibrary)
+        
+        func presentAlbums(_ _: UIAlertAction) {
+            imagePicker.sourceType = .savedPhotosAlbum
+            self.present(imagePicker, animated: true)
+        }
+        
+        let albumsAction = UIAlertAction(title: "Saved Albums",
+                                         style: .default,
+                                         handler: presentAlbums)
+        
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel,
+                                         handler: nil)
+        
+        prompt.addAction(cameraAction)
+        prompt.addAction(libraryAction)
+        prompt.addAction(albumsAction)
+        prompt.addAction(cancelAction)
+        
+        self.present(prompt, animated: true, completion: nil)
     }
 }

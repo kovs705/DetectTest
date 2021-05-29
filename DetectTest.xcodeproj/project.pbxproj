@@ -11,10 +11,9 @@
 		4E207E2626545B5100F840AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E207E2526545B5100F840AF /* ContentView.swift */; };
 		4E207E2826545B5300F840AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E207E2726545B5300F840AF /* Assets.xcassets */; };
 		4E207E2B26545B5300F840AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E207E2A26545B5300F840AF /* Preview Assets.xcassets */; };
-		4E207E2D26545B5300F840AF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E207E2C26545B5300F840AF /* Persistence.swift */; };
-		4E207E3026545B5300F840AF /* DetectTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4E207E2E26545B5300F840AF /* DetectTest.xcdatamodeld */; };
 		4E207E3B26545B5300F840AF /* DetectTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E207E3A26545B5300F840AF /* DetectTestTests.swift */; };
 		4E207E4626545B5300F840AF /* DetectTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E207E4526545B5300F840AF /* DetectTestUITests.swift */; };
+		4E207E5926545F9000F840AF /* convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E207E5826545F9000F840AF /* convert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +39,6 @@
 		4E207E2526545B5100F840AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4E207E2726545B5300F840AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E207E2A26545B5300F840AF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		4E207E2C26545B5300F840AF /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		4E207E2F26545B5300F840AF /* DetectTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DetectTest.xcdatamodel; sourceTree = "<group>"; };
 		4E207E3126545B5300F840AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E207E3626545B5300F840AF /* DetectTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DetectTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E207E3A26545B5300F840AF /* DetectTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectTestTests.swift; sourceTree = "<group>"; };
@@ -49,6 +46,7 @@
 		4E207E4126545B5300F840AF /* DetectTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DetectTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E207E4526545B5300F840AF /* DetectTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectTestUITests.swift; sourceTree = "<group>"; };
 		4E207E4726545B5300F840AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E207E5826545F9000F840AF /* convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = convert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +99,9 @@
 			children = (
 				4E207E2326545B5100F840AF /* DetectTestApp.swift */,
 				4E207E2526545B5100F840AF /* ContentView.swift */,
+				4E207E5826545F9000F840AF /* convert.swift */,
 				4E207E2726545B5300F840AF /* Assets.xcassets */,
-				4E207E2C26545B5300F840AF /* Persistence.swift */,
 				4E207E3126545B5300F840AF /* Info.plist */,
-				4E207E2E26545B5300F840AF /* DetectTest.xcdatamodeld */,
 				4E207E2926545B5300F840AF /* Preview Content */,
 			);
 			path = DetectTest;
@@ -265,8 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E207E3026545B5300F840AF /* DetectTest.xcdatamodeld in Sources */,
-				4E207E2D26545B5300F840AF /* Persistence.swift in Sources */,
+				4E207E5926545F9000F840AF /* convert.swift in Sources */,
 				4E207E2626545B5100F840AF /* ContentView.swift in Sources */,
 				4E207E2426545B5100F840AF /* DetectTestApp.swift in Sources */,
 			);
@@ -588,19 +584,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		4E207E2E26545B5300F840AF /* DetectTest.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				4E207E2F26545B5300F840AF /* DetectTest.xcdatamodel */,
-			);
-			currentVersion = 4E207E2F26545B5300F840AF /* DetectTest.xcdatamodel */;
-			path = DetectTest.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 4E207E1826545B5100F840AF /* Project object */;
 }
