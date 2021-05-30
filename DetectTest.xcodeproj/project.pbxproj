@@ -14,6 +14,7 @@
 		4E207E3B26545B5300F840AF /* DetectTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E207E3A26545B5300F840AF /* DetectTestTests.swift */; };
 		4E207E4626545B5300F840AF /* DetectTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E207E4526545B5300F840AF /* DetectTestUITests.swift */; };
 		4E207E5926545F9000F840AF /* convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E207E5826545F9000F840AF /* convert.swift */; };
+		4E504F4C2663ABA5005088E8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E504F4B2663ABA5005088E8 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		4E207E4526545B5300F840AF /* DetectTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectTestUITests.swift; sourceTree = "<group>"; };
 		4E207E4726545B5300F840AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E207E5826545F9000F840AF /* convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = convert.swift; sourceTree = "<group>"; };
+		4E504F4B2663ABA5005088E8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				4E207E2326545B5100F840AF /* DetectTestApp.swift */,
 				4E207E2526545B5100F840AF /* ContentView.swift */,
+				4E504F4B2663ABA5005088E8 /* ImagePicker.swift */,
 				4E207E5826545F9000F840AF /* convert.swift */,
 				4E207E2726545B5300F840AF /* Assets.xcassets */,
 				4E207E3126545B5300F840AF /* Info.plist */,
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E207E5926545F9000F840AF /* convert.swift in Sources */,
+				4E504F4C2663ABA5005088E8 /* ImagePicker.swift in Sources */,
 				4E207E2626545B5100F840AF /* ContentView.swift in Sources */,
 				4E207E2426545B5100F840AF /* DetectTestApp.swift in Sources */,
 			);
