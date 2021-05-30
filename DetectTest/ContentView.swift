@@ -44,19 +44,15 @@ struct ContentView: View {
                                         // init(imagePicker, animated: true)
                                     } },
                                     
-                                    .default(Text("Photo Library")) { func presentLibrary(_ _: UIAlertAction) {
-                                        imagePicker.sourceType = .photoLibrary
-                                        // self.present(imagePicker, animated: true)
-                                    } },
-                                    
-                                    .default(Text("Saved Albums")) { func presentAlbums(_ _: UIAlertAction) {
-                                        imagePicker.sourceType = .savedPhotosAlbum
-                                        // self.present(imagePicker, animated: true)
-                                    } },
-                                    
+                                    .default(Text("Photo Library")) {
+                                        self.showImagePicker = true
+                                    },
                                     .cancel()
                                 ])
                     // end of actionSheet
+                }
+                .sheet(isPresented: $showImagePicker) {
+                    ImagePicker()
                 }
             
             
