@@ -11,21 +11,45 @@ import UIKit
 
 struct ContentView: View {
     
-    var viewController: ViewController?
+    // var viewController: ViewController?
     var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     var imageView: UIImageView!
+    
+    let imagePicker = UIImagePickerController()
+    @State private var showingAlertSheet = false
+    
     
     // MARK: Body
     
     var body: some View {
-        Button(action: {
-            // function to open a picker:
-            viewController?.promptPhoto()
-            
-        }) {
-            Image(systemName: "rectangle.stack")
-                .font(.system(size: 25))
-        }
+        Image(systemName: "rectangle.stack")
+            .font(.system(size: 25))
+            .onTapGesture {
+                self.showingAlertSheet = true
+            }
+            .actionSheet(isPresented: $showingAlertSheet) {
+                ActionSheet(title: Text("Choose a photo"),
+                            message: Text("Please choose a photo"),
+                            buttons: [
+                                .default(Text("Camera")) { func presentCamera(_ _: UIAlertAction) {
+                                    imagePicker.sourceType = .camera
+                                    // init(imagePicker, animated: true)
+                                } },
+                                
+                                .default(Text("Photo Library")) { func presentLibrary(_ _: UIAlertAction) {
+                                    imagePicker.sourceType = .photoLibrary
+                                    // self.present(imagePicker, animated: true)
+                                } },
+                                
+                                .default(Text("Saved Albums")) { func presentAlbums(_ _: UIAlertAction) {
+                                    imagePicker.sourceType = .savedPhotosAlbum
+                                    // self.present(imagePicker, animated: true)
+                                } },
+                                
+                                .cancel()
+                            ])
+                // end of actionSheet
+            }
     }
     
     
@@ -38,6 +62,9 @@ struct ContentView: View {
 
     // MARK: image picker
 
+
+
+/*
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // picker for photo
@@ -89,4 +116,5 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         self.present(prompt, animated: true, completion: nil)
     }
-}
+ */
+// }
