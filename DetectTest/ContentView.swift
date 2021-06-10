@@ -16,9 +16,17 @@ struct ContentView: View {
     // var imageView: UIImageView!
     @State private var image: Image?
     
+    @State private var inputImage: UIImage?
+    
     let imagePicker = UIImagePickerController()
     @State private var showingAlertSheet = false
     @State private var showImagePicker = false
+    
+    func loadImage() {
+        guard let inputImage = inputImage else { return }
+        image = Image(uiImage: inputImage)
+    }
+    
     
     // MARK: Body
     
@@ -51,8 +59,9 @@ struct ContentView: View {
                                 ])
                     // end of actionSheet
                 }
-                .sheet(isPresented: $showImagePicker) {
-                    ImagePicker()
+                .sheet(isPresented: $showImagePicker, onDismiss: loadImage) {
+                    ImagePicker(image: self.$inputImage)
+                    
                 }
             
             
