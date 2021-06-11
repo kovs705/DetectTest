@@ -11,12 +11,15 @@ import UIKit
 
 struct ContentView: View {
     
+    // MARK: Properties
+    
     // var viewController: ViewController?
     var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    
     // var imageView: UIImageView!
     @State private var image: Image?
-    
     @State private var inputImage: UIImage?
+    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary   // default picker type
     
     let imagePicker = UIImagePickerController()
     @State private var showingAlertSheet = false
@@ -33,7 +36,6 @@ struct ContentView: View {
     var body: some View {
         
         VStack {
-            
             image?
                 .resizable()
                 .scaledToFit()
@@ -47,20 +49,22 @@ struct ContentView: View {
                     ActionSheet(title: Text("Choose a photo"),
                                 message: Text("Please choose a photo"),
                                 buttons: [
-                                    .default(Text("Camera")) { func presentCamera(_ _: UIAlertAction) {
-                                        imagePicker.sourceType = .camera
-                                        // init(imagePicker, animated: true)
-                                    } },
-                                    
+                                    .default(Text("Camera")) {
+                                        self.sourceType = .camera
+                                        self.showImagePicker = true
+                                        
+                                    },
                                     .default(Text("Photo Library")) {
+                                        self.sourceType = .photoLibrary
                                         self.showImagePicker = true
                                     },
                                     .cancel()
                                 ])
-                    // end of actionSheet
                 }
+                    // end of actionSheet
                 .sheet(isPresented: $showImagePicker, onDismiss: loadImage) {
-                    ImagePicker(image: self.$inputImage)
+                    ImagePicker(image: self.$inputImage, sourceType: sourceType)
+                        .ignoresSafeArea(.all)
                     
                 }
             
@@ -68,8 +72,6 @@ struct ContentView: View {
             
         }
         // end of VStack
-        
-        
         
     }
     
