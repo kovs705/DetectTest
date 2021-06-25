@@ -11,6 +11,7 @@ import UIKit
 
 struct ContentView: View {
     
+    
     // MARK: Properties
     
     // var viewController: ViewController?
@@ -40,6 +41,11 @@ struct ContentView: View {
                 .resizable()
                 .scaledToFit()
             
+            
+            
+            
+            
+            
             Image(systemName: "rectangle.stack")
                 .font(.system(size: 25))
                 .onTapGesture {
@@ -67,11 +73,12 @@ struct ContentView: View {
                         .ignoresSafeArea(.all)
                     
                 }
+                    // end of sheet
             
             
             
         }
-        // end of VStack
+                    // end of VStack
         
     }
     
