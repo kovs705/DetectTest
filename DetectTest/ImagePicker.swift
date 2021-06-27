@@ -9,11 +9,7 @@ import UIKit
 import SwiftUI
 import Vision
 
-
-
-
 struct ImagePicker: UIViewControllerRepresentable {
-    
     
     
     @Binding var image: UIImage?
@@ -56,7 +52,7 @@ struct ImagePicker: UIViewControllerRepresentable {
                 return
             }
             
-            
+            performVisionRequest(image: cgImage)
             
             parent.presentationMode.wrappedValue.dismiss()
         }
@@ -86,9 +82,8 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
         DispatchQueue.main.async {
             let results = request?.results as? [VNTextObservation]
+        }
     }
-    }
-        
         
         func presentAlert(_ title: String, error: NSError) {
             // Always present alert on main thread.
@@ -104,13 +99,12 @@ struct ImagePicker: UIViewControllerRepresentable {
             }
         }
         
-        func performVisionRequest(image: CGImage, orientation: CGImagePropertyOrientation) {
+        func performVisionRequest(image: CGImage) {
             
             // Fetch desired requests based on switch status.
             let requests = createVisionRequests()
             // Create a request handler.
             let imageRequestHandler = VNImageRequestHandler(cgImage: image,
-                                                            orientation: orientation,
                                                             options: [:])
             
             // Send the requests to the request handler.

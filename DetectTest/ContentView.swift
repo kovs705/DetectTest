@@ -43,9 +43,6 @@ struct ContentView: View {
             
             
             
-            
-            
-            
             Image(systemName: "rectangle.stack")
                 .font(.system(size: 25))
                 .onTapGesture {
