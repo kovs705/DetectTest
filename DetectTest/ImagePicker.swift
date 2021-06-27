@@ -52,6 +52,10 @@ struct ImagePicker: UIViewControllerRepresentable {
                 parent.image = uiImage
             }
             
+            guard let cgImage = parent.image?.cgImage else {
+                return
+            }
+            
             
             
             parent.presentationMode.wrappedValue.dismiss()
@@ -83,8 +87,8 @@ struct ImagePicker: UIViewControllerRepresentable {
         DispatchQueue.main.async {
             let results = request?.results as? [VNTextObservation]
     }
-    
-    
+    }
+        
         
         func presentAlert(_ title: String, error: NSError) {
             // Always present alert on main thread.
@@ -99,7 +103,7 @@ struct ImagePicker: UIViewControllerRepresentable {
                 alertController.addAction(okAction)
             }
         }
-    
+        
         func performVisionRequest(image: CGImage, orientation: CGImagePropertyOrientation) {
             
             // Fetch desired requests based on switch status.
@@ -128,7 +132,5 @@ struct ImagePicker: UIViewControllerRepresentable {
             
             return requests
         }
-        
-}
 
 
